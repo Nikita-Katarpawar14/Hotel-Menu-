@@ -1,0 +1,87 @@
+#menu of a resturant
+
+menu ={
+    'pizza':50,
+    'burger':60,
+    'salad':60,
+    'coffee':80,
+    'tea':15,
+    'french-fries':60,
+    'tea':15,
+    'pasta':90,
+    'zukini':100
+
+}
+#Greet 
+print("****************************************************************\n")
+print("                   Welcome to the Resturant  \n                     ")       
+print("                            Menu ")
+print("___________________________________________________________________")
+print("""
+Tea          :\t\t\t\t15Rs/-
+Pizza        :\t\t\t\t40RS/-
+Pasta        :\t\t\t\t50RS/-
+Burger       :\t\t\t\t60RS/-
+Salad        :\t\t\t\t60RS/-
+Coffee       :\t\t\t\t80RS/-
+Pasta        :\t\t\t\t90RS/-
+Noodles      :\t\t\t\t100RS/-
+zukuni       :\t\t\t\t100RS/-
+french fries :\t\t\t\t110RS/-
+""")
+print("________________________________________________________________\n")
+   
+order_total=0
+order_details={}
+#this variable store the value of the items which user select.
+'''
+item=input("\nWhat would you like to eat  : ")
+if item in menu:
+    order_total+=menu[item]
+    print(f"You have added {item} in your order.!!")
+else:
+    print(f"Order something which is in the menu {item}\n is currently not in our menu \n Thank You For visiting")
+
+another_item =input("\nDo you want something else : ")
+if another_item == "yes" or another_item == "Yes":
+    item_2= input("What would you like to have : ")
+    if item_2 in menu:
+        order_total+=menu[item_2]
+        print(f"You have added another item {item_2} in your existing order.!!")
+    else:
+        print(f"Order something which is in the menu, 1 {item}\nThis item is currently not in our menu \n Thank You For visiting")
+print(f"Your total amount is : {order_total}")        
+ '''
+
+while True:
+    item = input("Enter the item you want to order: ")
+    if item in menu:
+        try:
+            quantity = int(input(f"How many {item} 's would you like to order? "))
+        
+        except ValueError:
+            print("Please enter a valid number for quantity.")
+            continue
+        order_total += menu[item] * quantity
+        if item in order_details:
+            order_details[item] += quantity
+        else:
+            order_details[item] = quantity
+      
+        print(f"\nYour item {item} has been added to your order")
+        print(f"✅ Added {quantity} x {item.title()} to your order.\n")   
+    else:
+        print("\n❌ sorry, we don't have that item on the menu")
+
+    another_order = input("\nDo you want to add another item? (yes/no): ")
+    if another_order.lower() != 'yes':
+        break
+
+# Final bill
+print("\n================== Final Bill ==================\n")
+for item, qty in order_details.items():
+    print(f"{item.title():<10} x {qty} = {menu[item] * qty} Rs")
+print("                                                 ")
+print(f"Total Amount to Pay: {order_total} Rs\n")
+print("============ Thank you for visiting! ============")
+    
